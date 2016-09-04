@@ -10,7 +10,9 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * Created by Pavel on 29.08.2016.
+ * <p>Тест криптографического словаря.</p>
+ *
+ * @author Pavel Annin
  */
 public class CryptoDictionaryTest {
 
