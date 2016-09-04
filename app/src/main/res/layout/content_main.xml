@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ru.annin.cryptowallet.presentation.MainActivity"
+    tools:context="ru.annin.cryptowallet.presentation.ui.activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
@@ -19,25 +20,60 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <android.support.v7.widget.SwitchCompat
+            android:id="@+id/sw_encode_or_decode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOn="sdssssssf"
-            android:text="s33ssss3"
-            app:showText="true"
-            android:checked="true"
-            android:textOff="sdfs"/>
+            android:text="@string/msg_encode"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/sw_only_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_only_number"/>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_password">
 
             <EditText
-                android:id="@+id/edt"
+                android:id="@+id/edt_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
 
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_key">
+
+            <EditText
+                android:id="@+id/edt_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_result">
+
+            <EditText
+                android:id="@+id/edt_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 

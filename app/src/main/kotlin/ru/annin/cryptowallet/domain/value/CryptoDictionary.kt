@@ -11,9 +11,12 @@ package ru.annin.cryptowallet.domain.value
 object CryptoDictionary {
 
     /** Цифровой словарь. */
-    val NUMBER : Map<Char, Int>;
+    val NUMBER : Map<Char, Int>
     /** Буквенный словарь. */
-    val ENGLISH : Map<Char, Int>;
+    val ENGLISH : Map<Char, Int>
+    /** Буквеноцифровой словарь. */
+    val NUMENGLISH : MutableMap<Char, Int>
+
 
     init {
         NUMBER = mapOf(
@@ -26,7 +29,7 @@ object CryptoDictionary {
                 Pair('6', 3),
                 Pair('7', 2),
                 Pair('8', 1),
-                Pair('9', 0));
+                Pair('9', 0))
 
         ENGLISH = mapOf(
                 Pair('A', 61),
@@ -80,6 +83,10 @@ object CryptoDictionary {
                 Pair('Y', 13),
                 Pair('y', 12),
                 Pair('Z', 11),
-                Pair('z', 10));
+                Pair('z', 10))
+
+        NUMENGLISH = mutableMapOf()
+        NUMENGLISH .putAll(NUMBER)
+        NUMENGLISH.putAll(ENGLISH)
     }
 }

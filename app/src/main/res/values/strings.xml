@@ -4,4 +4,14 @@
     <string name="app_name">CryptoWallet</string>
 
     <string name="title_activity_main">@string/app_name</string>
+
+    <string name="msg_encode">Encode</string>
+    <string name="msg_only_number">Only number</string>
+    <string name="hint_password">Text</string>
+    <string name="hint_key">Key</string>
+    <string name="hint_result">Result</string>
+    <string name="error_empty">Empty</string>
+
+
+
 </resources>

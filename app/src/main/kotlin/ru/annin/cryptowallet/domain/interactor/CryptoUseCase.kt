@@ -30,7 +30,7 @@ class CryptoUseCase {
      */
     fun encode(text: String, key: String, isNumber: Boolean = false): Observable<String> {
         val dictionary: Map<Char, Int> =
-                if (isNumber == true) CryptoDictionary.NUMBER else CryptoDictionary.ENGLISH
+                if (isNumber) CryptoDictionary.NUMBER else CryptoDictionary.NUMENGLISH
 
         return encode(text, key, dictionary)
     }
@@ -71,7 +71,7 @@ class CryptoUseCase {
      */
     fun decode(text: String, key: String, isNumber: Boolean = false): Observable<String> {
         val dictionary: Map<Char, Int> =
-                if (isNumber == true) CryptoDictionary.NUMBER else CryptoDictionary.ENGLISH
+                if (isNumber == true) CryptoDictionary.NUMBER else CryptoDictionary.NUMENGLISH
 
         return decode(text, key, dictionary)
     }

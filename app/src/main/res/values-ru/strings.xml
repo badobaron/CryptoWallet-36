@@ -3,4 +3,10 @@
 
     <string name="title_activity_main">@string/app_name</string>
 
+    <string name="msg_encode">Шифровать</string>
+    <string name="msg_only_number">Только цифры</string>
+    <string name="hint_password">Текст шифрования</string>
+    <string name="hint_key">Ключ шифрования</string>
+    <string name="error_empty">Заполните поле</string>
+
 </resources>
