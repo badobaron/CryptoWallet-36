@@ -17,13 +17,10 @@ import java.util.Map;
 public class CryptoDictionaryTest {
 
     private CryptoDictionary dictionary;
-    private Map<Character, Integer> fullDictionary;
 
     @Before
     public void onBefore() {
         dictionary = CryptoDictionary.INSTANCE;
-        fullDictionary = dictionary.getNUMBER();
-        fullDictionary.putAll(dictionary.getENGLISH());
     }
 
     @After
@@ -32,23 +29,72 @@ public class CryptoDictionaryTest {
     }
 
     @Test
-    public void testCountDictionary() throws Throwable {
-        final Collection<Integer> values = fullDictionary.values();
-        Assert.assertEquals("Not complete dictionary", (Integer) (fullDictionary.size() - 1),
-                Collections.<Integer>max(values));
-    }
+    public void testNumberDictionary() throws Throwable {
+        final Map<Character, Integer> currentDictionary = dictionary.getNUMBER();
 
-    @Test
-    public void testDuplicateKeyDictionary() throws Throwable {
-        final Collection<Character> keys = fullDictionary.keySet();
+        final Collection<Integer> values = currentDictionary.values();
+        Assert.assertEquals("Not complete dictionary", (Integer) (currentDictionary.size() - 1),
+                Collections.<Integer>max(values));
+
+        final Collection<Character> keys = currentDictionary.keySet();
         for (final Character key : keys) {
             Assert.assertEquals("Duplicate key", 1, Collections.frequency(keys, key));
+        }
+
+        for (final Integer value : values) {
+            Assert.assertEquals("Duplicate value", 1, Collections.frequency(values, value));
         }
     }
 
     @Test
-    public void testDuplicateValueDictionary() throws Throwable {
-        final Collection<Integer> values = fullDictionary.values();
+    public void testEnglishDictionary() throws Throwable {
+        final Map<Character, Integer> currentDictionary = dictionary.getENGLISH();
+
+        final Collection<Integer> values = currentDictionary.values();
+        Assert.assertEquals("Not complete dictionary", (Integer) (currentDictionary.size() - 1),
+                Collections.<Integer>max(values));
+
+        final Collection<Character> keys = currentDictionary.keySet();
+        for (final Character key : keys) {
+            Assert.assertEquals("Duplicate key", 1, Collections.frequency(keys, key));
+        }
+
+        for (final Integer value : values) {
+            Assert.assertEquals("Duplicate value", 1, Collections.frequency(values, value));
+        }
+    }
+
+    @Test
+    public void testRussianDictionary() throws Throwable {
+        final Map<Character, Integer> currentDictionary = dictionary.getRUSSIAN();
+
+        final Collection<Integer> values = currentDictionary.values();
+        Assert.assertEquals("Not complete dictionary", (Integer) (currentDictionary.size() - 1),
+                Collections.<Integer>max(values));
+
+        final Collection<Character> keys = currentDictionary.keySet();
+        for (final Character key : keys) {
+            Assert.assertEquals("Duplicate key", 1, Collections.frequency(keys, key));
+        }
+
+        for (final Integer value : values) {
+            Assert.assertEquals("Duplicate value", 1, Collections.frequency(values, value));
+        }
+    }
+
+    @Test
+    public void testSpecialDictionary() throws Throwable {
+        final Map<Character, Integer> currentDictionary = dictionary.getSPECIAL();
+
+        final Collection<Integer> values = currentDictionary.values();
+        Assert.assertEquals("Not complete dictionary", (Integer) (currentDictionary.size() - 1),
+                Collections.<Integer>max(values));
+
+        final Collection<Character> keys = currentDictionary.keySet();
+        for (final Character key : keys) {
+            Assert.assertEquals("Duplicate key", 1, Collections.frequency(keys, key));
+        }
+
         for (final Integer value : values) {
             Assert.assertEquals("Duplicate value", 1, Collections.frequency(values, value));
         }

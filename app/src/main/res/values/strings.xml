@@ -6,7 +6,10 @@
     <string name="title_activity_main">@string/app_name</string>
 
     <string name="msg_encode">Encode</string>
-    <string name="msg_only_number">Only number</string>
+    <string name="msg_dictionary_number">Number</string>
+    <string name="msg_dictionary_english">English</string>
+    <string name="msg_dictionary_russian">Russia</string>
+    <string name="msg_dictionary_special">Special</string>
     <string name="hint_password">Text</string>
     <string name="hint_key">Key</string>
     <string name="hint_result">Result</string>

@@ -28,11 +28,8 @@ class CryptoUseCase {
      *
      * @return Зашифрованная строка.
      */
-    fun encode(text: String, key: String, isNumber: Boolean = false): Observable<String> {
-        val dictionary: Map<Char, Int> =
-                if (isNumber) CryptoDictionary.NUMBER else CryptoDictionary.NUMENGLISH
-
-        return encode(text, key, dictionary)
+    fun encode(text: String, key: String, optional: CryptoDictionary.Dictionary): Observable<String> {
+        return encode(text, key, CryptoDictionary.create(optional))
     }
 
     /**
@@ -69,11 +66,8 @@ class CryptoUseCase {
      *
      * @return Расшифрованная строка.
      */
-    fun decode(text: String, key: String, isNumber: Boolean = false): Observable<String> {
-        val dictionary: Map<Char, Int> =
-                if (isNumber == true) CryptoDictionary.NUMBER else CryptoDictionary.NUMENGLISH
-
-        return decode(text, key, dictionary)
+    fun decode(text: String, key: String, optional: CryptoDictionary.Dictionary): Observable<String> {
+        return decode(text, key, CryptoDictionary.create(optional))
     }
 
     /**

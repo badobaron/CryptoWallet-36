@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import ru.annin.cryptowallet.R
 import ru.annin.cryptowallet.domain.interactor.CryptoUseCase
+import ru.annin.cryptowallet.domain.value.CryptoDictionary
 import rx.Observable
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
@@ -48,7 +49,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         sw_encode_or_decode.setOnCheckedChangeListener { p0, p1 -> crypto() }
-        sw_only_number.setOnCheckedChangeListener { p0, p1 -> crypto() }
+        sw_dictionary_number.setOnCheckedChangeListener { p0, p1 -> crypto() }
+        sw_dictionary_english.setOnCheckedChangeListener { p0, p1 -> crypto() }
+        sw_dictionary_russian.setOnCheckedChangeListener { p0, p1 -> crypto() }
+        sw_dictionary_special.setOnCheckedChangeListener { p0, p1 -> crypto() }
     }
 
     override fun onDestroy() {
@@ -61,9 +65,19 @@ class MainActivity : AppCompatActivity() {
             return
         }
         val cryptoObservable: Observable<String> = if (sw_encode_or_decode.isChecked)
-            crypto.encode(edt_text.text.toString(), edt_key.text.toString(), sw_only_number.isChecked)
+            crypto.encode(edt_text.text.toString(), edt_key.text.toString(),
+                    CryptoDictionary.Dictionary(
+                            isNumber = sw_dictionary_number.isChecked,
+                            isEnglish = sw_dictionary_english.isChecked,
+                            isRussian = sw_dictionary_russian.isChecked,
+                            isSpecial = sw_dictionary_special.isChecked))
         else
-            crypto.decode(edt_text.text.toString(), edt_key.text.toString(), sw_only_number.isChecked)
+            crypto.decode(edt_text.text.toString(), edt_key.text.toString(),
+                    CryptoDictionary.Dictionary(
+                            isNumber = sw_dictionary_number.isChecked,
+                            isEnglish = sw_dictionary_english.isChecked,
+                            isRussian = sw_dictionary_russian.isChecked,
+                            isSpecial = sw_dictionary_special.isChecked))
 
         val cryptoSubscription: Subscription = cryptoObservable.subscribe(
                 { e -> edt_result.setText(e) },

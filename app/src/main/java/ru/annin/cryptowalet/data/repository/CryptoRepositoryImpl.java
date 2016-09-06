@@ -18,9 +18,11 @@ public final class CryptoRepositoryImpl implements CryptoRepository {
 
     @NonNull
     @Override
-    public final String encode(@NonNull String text, @NonNull String key, @NonNull Map<Character, Integer> dictionary) {
-        final List<Integer> textEncode = encodeStr2Dictionary(text, dictionary);
-        final List<Integer> keyEncode = encodeStr2Dictionary(key, dictionary);
+    public final String encode(@NonNull String text, @NonNull String key,
+                               @NonNull Map<Character, Integer> overallDictionary,
+                               @NonNull Map<Character, Integer> encodeDictionary) {
+        final List<Integer> textEncode = encodeStr2Dictionary(text, overallDictionary);
+        final List<Integer> keyEncode = encodeStr2Dictionary(key, overallDictionary);
 
         final List<Integer> encode = new ArrayList<>();
 
@@ -29,17 +31,19 @@ public final class CryptoRepositoryImpl implements CryptoRepository {
             final Integer numKey = getWithoutOffset(i, keyEncode);
 
             final Integer numResult = numText + numKey;
-            final Integer numResultOptimized = numResult - ((numResult / dictionary.size()) * dictionary.size());
+            final Integer numResultOptimized = numResult - ((numResult / encodeDictionary.size()) * encodeDictionary.size());
             encode.add(numResultOptimized);
         }
-        return decodeDictionary2Str(encode, dictionary);
+        return decodeDictionary2Str(encode, encodeDictionary);
     }
 
     @NonNull
     @Override
-    public final String decode(@NonNull String text, @NonNull String key, @NonNull Map<Character, Integer> dictionary) {
-        final List<Integer> textEncode = encodeStr2Dictionary(text, dictionary);
-        final List<Integer> keyEncode = encodeStr2Dictionary(key, dictionary);
+    public final String decode(@NonNull String text, @NonNull String key,
+                               @NonNull Map<Character, Integer> overallDictionary,
+                               @NonNull Map<Character, Integer> decodeDictionary) {
+        final List<Integer> textEncode = encodeStr2Dictionary(text, decodeDictionary);
+        final List<Integer> keyEncode = encodeStr2Dictionary(key, decodeDictionary);
 
         final List<Integer> decode = new ArrayList<>();
         for (int i = 0; i < textEncode.size(); ++i) {
@@ -48,13 +52,13 @@ public final class CryptoRepositoryImpl implements CryptoRepository {
 
             Integer numResult = numText;
             while ((numResult - numKey) < 0) {
-                numResult += dictionary.size();
+                numResult += overallDictionary.size();
             }
             final Integer numResultOptimize = numResult - numKey;
 
             decode.add(numResultOptimize);
         }
-        return decodeDictionary2Str(decode, dictionary);
+        return decodeDictionary2Str(decode, overallDictionary);
     }
 
     @NonNull

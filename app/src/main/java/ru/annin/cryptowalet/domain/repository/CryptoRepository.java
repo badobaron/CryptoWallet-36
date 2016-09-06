@@ -21,7 +21,9 @@ public interface CryptoRepository {
      * @return Зашифрованная строка.
      */
     @NonNull
-    String encode(@NonNull String text, @NonNull String key, @NonNull Map<Character, Integer> dictionary);
+    String encode(@NonNull String text, @NonNull String key,
+                  @NonNull Map<Character, Integer> overallDictionary,
+                  @NonNull Map<Character, Integer> encodeDictionary);
 
     /**
      * Декодировать строку.
@@ -33,5 +35,7 @@ public interface CryptoRepository {
      * @return Расшифрованная строка.
      */
     @NonNull
-    String decode(@NonNull String text, @NonNull String key, @NonNull Map<Character, Integer> dictionary);
+    String decode(@NonNull String text, @NonNull String key,
+                  @NonNull Map<Character, Integer> overallDictionary,
+                  @NonNull Map<Character, Integer> decodeDictionary);
 }
